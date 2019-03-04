@@ -1,0 +1,31 @@
+{
+  "name": "lenny",
+  "version": "1.0.0",
+  "description": "medisot dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-server": "tsc --p tsconfig.server.json",
+    "build-client": "webpack",
+    "build": "yarn build-server & yarn build-client",
+    "start-dev-server": "nodemon dist/server/index.js"
+  },
+  "author": "Aditya",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "html-webpack-plugin": "^4.0.0-beta.5",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.3.3333",
+    "webpack-cli": "^3.2.3"
+  }
+}
