@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -52,7 +53,13 @@ module.exports = {
             chunks: ['login'],
             // Load a custom template (lodash by default)
             template: 'login.html'
-          })
+          }),
+        new CopyWebpackPlugin([
+            {
+                from: "./src/client/images",
+                to: "images"
+            }
+        ]),
     ],
 
     // When importing a module whose path matches one of the following, just
