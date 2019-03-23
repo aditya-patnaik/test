@@ -1,0 +1,21 @@
+.nav-link {
+    text-decoration: none;
+    color: black;
+
+    &.activeRoute {
+        color: darkcyan;
+    }
+
+    &:hover {
+        color: darkcyan;
+    }
+
+    &:focus {
+        text-decoration: underline;
+        outline: none;
+    }
+
+    .link-label {
+        margin-right: 10px;
+    }
+}

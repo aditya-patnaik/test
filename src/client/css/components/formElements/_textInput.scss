@@ -1,0 +1,17 @@
+.text-input-container {
+    input {
+        border: none;
+        border-bottom: 1px solid lightgrey;
+        font-size: 14px;
+        outline: none;
+        min-width: 200px;
+
+        &:focus {
+            border-color: crimson;
+        }
+
+        &::placeholder {
+            opacity: 0.5;
+        }
+    }
+}

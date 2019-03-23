@@ -1,0 +1,11 @@
+.text-input {
+    min-width: 200px;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    margin: 10px 0;
+
+    &:focus {
+        outline: none;
+        border-color: crimson;
+    }
+}

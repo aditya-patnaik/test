@@ -1,0 +1,45 @@
+.component-list-container {
+    margin-bottom: 50px;
+
+    .empty-list-label {
+        color: lightgrey;
+        font-size: 12px;
+    }
+
+    .row-container {
+        .row-component-container {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .remove-row-container {
+            display: inline-block;
+            font-size: 12px;
+            color: crimson;
+            visibility: hidden;
+
+            button {
+                background: none;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 0 5px 3px 5px;
+                
+                &:hover, &:focus {
+                    visibility: visible;
+                    background: crimson;
+                    color: white;
+                }
+            }
+        }
+        &:hover .remove-row-button {
+            visibility: visible;
+        }
+    }
+
+    .add-row-container {
+        font-size: 11px;
+        color: crimson;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}

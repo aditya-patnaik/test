@@ -1,0 +1,18 @@
+.patient-card-container {
+    border: 1px solid lightgrey;
+    box-shadow: 0 0 5px lightgrey;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    .patient-image-container {
+        display: inline-block;
+        margin-right: 20px;
+        font-size: 30px;
+        vertical-align: middle;
+    }
+
+    .patient-name-container {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}

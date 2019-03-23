@@ -1,0 +1,27 @@
+.patient-list-container {
+    .patient-list-row {
+        margin: 5px 0;
+        a {
+            color: black;
+            text-decoration: none;
+            font-size: 13px;
+
+            .patient-image {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 30px;
+                vertical-align: middle;
+            }
+
+            .patient-info {
+                display: inline-block;
+                vertical-align: middle;
+
+                .patient-secondary-info {
+                    font-size: 11px;
+                    color: grey;
+                }
+            }
+        }
+    }
+}

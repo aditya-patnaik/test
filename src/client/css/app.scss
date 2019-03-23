@@ -1,0 +1,14 @@
+@import "./components/components";
+@import "./containers/containers";
+
+html, body {
+    height: 100%;
+    font-family: "Open Sans";
+    margin: 0px;
+}
+
+#app {
+    .main-content-container {
+        margin-left: 220px;
+    }
+}
