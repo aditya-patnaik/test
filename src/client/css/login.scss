@@ -48,7 +48,7 @@ html, body, #root {
   margin-right: 5px;
 }
 
-.registration-container-wrapper {
+.registration-container-wrapper, #App {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -119,5 +119,21 @@ input[type="text"]::placeholder, input[type="password"]::placeholder {
     padding: 20px;
     box-shadow: 0 0 5px lightgrey;
     border-radius: 5px;
+
+    .login-user {
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.login-container {
+  padding: 20px;
+  box-shadow: 0 0 5px lightgrey;
+  border-radius: 5px;
+
+  .register-user {
+    font-size: 12px;
+    margin-top: 20px;
   }
 }

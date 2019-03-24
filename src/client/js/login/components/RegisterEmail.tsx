@@ -1,5 +1,6 @@
 import * as React from "react"
 import {RegistrationActions} from "../actions/RegistrationActions";
+import {Link} from "react-router-dom";
 
 export interface RegisterEmailProps {
     onConfirmation: (email: string) => void;
@@ -58,7 +59,10 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
                     </div>
                 }
                 <div className="form-row">
-                    <input type="button" onClick={this.onSubmit} className="btn btn-primary btn-sm register-btn" value="Submit" />
+                    <input type="button" onClick={this.onSubmit} className="btn btn-primary btn-sm register-btn" value="Register" />
+                </div>
+                <div className={"login-user"}>
+                    <span>Already registered? <Link to={"login"}>Login here</Link></span>
                 </div>
             </div>
         )
