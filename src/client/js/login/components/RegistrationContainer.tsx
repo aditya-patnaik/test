@@ -6,7 +6,7 @@ import LabRegistration from "../containers/formContainers/LabRegistration";
 import UserTypeSelector from "./UserTypeSelector";
 
 export interface RegistrationContainerProps {
-
+    email: string;
 }
 
 export interface RegistrationContainerState {
@@ -26,7 +26,7 @@ export default class RegistrationContainer extends React.Component<RegistrationC
         })
     }
     formToDisplay = () => {
-        if (this.state.selectedType === 1) return <PatientRegistrationForm />
+        if (this.state.selectedType === 1) return <PatientRegistrationForm email={this.props.email} />
         else if (this.state.selectedType === 2) return <DoctorRegistrationForm />
         else if (this.state.selectedType === 3) return <InstitutionRegistrationForm />
         else return <LabRegistration />
@@ -35,10 +35,10 @@ export default class RegistrationContainer extends React.Component<RegistrationC
         return (
             <div className="registration-container col-md-3">
                 <div className="logo-container">
-                    <img src="medisot_logo.png" width="30" alt="Medisot Logo" />
+                    <img src="images/medisot_logo.png" width="30" alt="Medisot Logo" />
                     <label>mediSOT</label>
                 </div>
-                <UserTypeSelector updateSelection={this.updateSelection} selectedType={this.state.selectedType} />
+                {/*<UserTypeSelector updateSelection={this.updateSelection} selectedType={this.state.selectedType} />*/}
                 {this.formToDisplay()}
             </div>
         )

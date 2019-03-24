@@ -1,5 +1,3 @@
-import { resolve } from "dns";
-
 export default class PatientActions {
     static searchPatients = (): Promise<any[]> => {
         return new Promise((resolve, reject) => {

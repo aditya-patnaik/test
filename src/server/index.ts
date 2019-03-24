@@ -4,9 +4,10 @@ import * as cookieParser from "cookie-parser";
 import * as path from "path";
 import * as passport from "passport";
 import * as session from "express-session";
-import { PORT } from "./configs/configs";
+import {DEEP_PURPLE_API_HOST, DEEP_PURPLE_API_PORT, PORT} from "./configs/configs";
 import authenticationMiddleware from "./authentication/authenticationMiddleware";
 import {BootstrapPassport} from "./authentication/BootstrapPassport";
+import {ApiUtils} from "./utils/ApiUtils";
 /* import MongoUtils from "./utils/MongoUtils";
 MongoUtils.initialiseMongo();
 import mongoose from "./db/mongoose"; */
@@ -35,6 +36,24 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 BootstrapPassport();
+
+app.post("/deepPurple/api/registerEmail", (req, res) => {
+    const registerUserUrl = DEEP_PURPLE_API_HOST + ":" + DEEP_PURPLE_API_PORT + "/" + "api/registerEmail";
+    ApiUtils.apiPostRequest(registerUserUrl, req.body).then((apiResponse: Response) => {
+        res.json(apiResponse).status(200)
+    }).catch((err: any) => {
+        res.json(err).status(500);
+    })
+})
+
+app.post("/deepPurple/api/confirmEmail", (req, res) => {
+    const confirmEmailUrl = DEEP_PURPLE_API_HOST + ":" + DEEP_PURPLE_API_PORT + "/" + "api/confirmEmail";
+    ApiUtils.apiPostRequest(confirmEmailUrl, req.body).then((apiResponse: Response) => {
+        res.json(apiResponse).status(200)
+    }).catch((err: any) => {
+        res.json(err).status(500);
+    })
+})
 
 app.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, "./../client/login.html"))

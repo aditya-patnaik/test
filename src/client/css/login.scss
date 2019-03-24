@@ -60,6 +60,7 @@ html, body, #root {
   box-shadow: 0 0 5px lightgrey;
   background: white;
   border-radius: 2px;
+  margin: auto;
 }
 
 .form-row {
@@ -67,19 +68,19 @@ html, body, #root {
   text-align: center;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   color: #1d1d1d;
   border: 1px solid #b9b9b9;
   padding: 5px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus  {
   outline: none;
   border-color: lightseagreen;
 }
 
-input[type="text"]::placeholder {
+input[type="text"]::placeholder, input[type="password"]::placeholder {
   color: darkgray;
 }
 
@@ -108,4 +109,15 @@ input[type="text"]::placeholder {
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   width: 100%;
+}
+
+.registration-flow-container {
+  width: 100%;
+
+  .register-email-container {
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 5px lightgrey;
+    border-radius: 5px;
+  }
 }
