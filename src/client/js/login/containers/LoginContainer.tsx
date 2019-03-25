@@ -10,6 +10,7 @@ interface LoginContainerState {
     email: string;
     password: string;
     loginError: string;
+    loginLoader: boolean;
 }
 
 class LoginContainer extends React.Component<LoginContainerProps, LoginContainerState> {
@@ -18,6 +19,7 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
         this.state = {
             email: "",
             password: "",
+            loginLoader: false,
             loginError: null
         }
     }
@@ -32,15 +34,25 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
         })
     }
     onLogin = (evt: any) => {
-        RegistrationActions.loginUser(this.state.email, this.state.password).then(() => {
-            window.location.href = "/";
-        }).catch(() => {
-            this.setState({
-                loginError: "Incorrect username / password"
-            })
-        });
+        this.setState({
+            loginError: null,
+            loginLoader: true
+        }, () => {
+            RegistrationActions.loginUser(this.state.email, this.state.password).then(() => {
+                window.location.href = "/";
+            }).catch(() => {
+                this.setState({
+                    loginError: "Incorrect username / password"
+                })
+            }).finally(() => {
+                this.setState({
+                    loginLoader: false
+                })
+            });
+        })
     }
     render() {
+        let isLoginLoading = this.state.loginLoader;
         return (
             <div className={"login-container col-md-3"}>
                 <div className="logo-container">
@@ -48,13 +60,22 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
                     <label>mediSOT</label>
                 </div>
                 <div className="form-row">
-                    <input name={"username"} type="text" value={this.state.email} onChange={this.onEmailChange} className="form-control form-control-sm" placeholder="Email" />
+                    <input name={"username"}
+                           autoComplete={"off"}
+                           type="text"
+                           value={this.state.email}
+                           onChange={this.onEmailChange}
+                           className="form-control form-control-sm"
+                           placeholder="Email" />
                 </div>
                 <div className="form-row">
                     <input name={"password"} type="password" value={this.state.password} onChange={this.onPasswordChange} className="form-control form-control-sm" placeholder="Password" />
                 </div>
                 <div className="form-row">
-                    <input type="button" onClick={this.onLogin} className="btn btn-primary btn-sm register-btn" value="Login" />
+                    <button disabled={isLoginLoading} onClick={this.onLogin} className="btn btn-primary btn-sm register-btn">
+                        <span>Login</span>
+                        { isLoginLoading && <img className={"spinner-gif"} src={"images/loader.gif"} /> }
+                    </button>
                 </div>
                 {
                     this.state.loginError &&
