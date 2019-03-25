@@ -9,6 +9,7 @@ export interface RegisterEmailProps {
 export interface RegisterEmailState {
     email: string;
     registrationError: string;
+    registrationLoader: boolean;
     otp: string;
 }
 
@@ -17,6 +18,7 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
         super(props);
         this.state = {
             email: "",
+            registrationLoader: false,
             registrationError: null,
             otp: null
         }
@@ -33,22 +35,43 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
     }
     onSubmit = (evt: any) => {
         if (this.state.email !== "" && this.state.otp === null) {
-            RegistrationActions.registerEmail(this.state.email).then((data) => {
-                this.setState({
-                    otp: ""
-                })
-            }).catch((err: any) => {
-                this.setState({
-                    registrationError: err.msg
+            this.setState({
+                registrationLoader: true
+            }, () => {
+                RegistrationActions.registerEmail(this.state.email).then((data) => {
+                    this.setState({
+                        otp: ""
+                    })
+                }).catch((err: any) => {
+                    this.setState({
+                        registrationError: err.msg
+                    })
+                }).finally(() => {
+                    this.setState({
+                        registrationLoader: false
+                    })
                 })
             })
         } else {
-            RegistrationActions.confirmEmail(this.state.email, this.state.otp).then((data) => {
-                this.props.onConfirmation(this.state.email);
+            this.setState({
+                registrationLoader: true
+            }, () => {
+                RegistrationActions.confirmEmail(this.state.email, this.state.otp).then((data) => {
+                    this.props.onConfirmation(this.state.email);
+                }).catch((err: any) => {
+                    this.setState({
+                        registrationError: err.msg
+                    })
+                }).finally(() => {
+                    this.setState({
+                        registrationLoader: false
+                    })
+                })
             })
         }
     }
     render() {
+        let isLoading = this.state.registrationLoader;
         return (
             <div className={"register-email-container col-md-3"}>
                 <div className="logo-container">
@@ -65,7 +88,10 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
                     </div>
                 }
                 <div className="form-row">
-                    <input type="button" onClick={this.onSubmit} className="btn btn-primary btn-sm register-btn" value="Register" />
+                    <button disabled={isLoading} onClick={this.onSubmit} className="btn btn-primary btn-sm register-btn">
+                        <span>Register</span>
+                        { isLoading && <img className={"spinner-gif"} src={"images/loader.gif"} /> }
+                    </button>
                 </div>
                 {
                     this.state.registrationError &&
