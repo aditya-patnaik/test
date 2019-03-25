@@ -42,20 +42,39 @@ app.post("/deepPurple/api/registerEmail", (req, res) => {
     ApiUtils.apiPostRequest(registerUserUrl, req.body).then((apiResponse: Response) => {
         res.json(apiResponse).status(200)
     }).catch((err: any) => {
-        res.json(err).status(500);
+        res.status(500).json(err);
     })
 })
 
 app.post("/deepPurple/api/confirmEmail", (req, res) => {
     const confirmEmailUrl = DEEP_PURPLE_API_HOST + ":" + DEEP_PURPLE_API_PORT + "/" + "api/confirmEmail";
     ApiUtils.apiPostRequest(confirmEmailUrl, req.body).then((apiResponse: Response) => {
-        res.json(apiResponse).status(200)
+        res.status(200).json(apiResponse);
     }).catch((err: any) => {
-        res.json(err).status(500);
+        res.status(500).json(err);
     })
 })
 
+app.post("/deepPurple/api/registerUser", (req, res) => {
+    const confirmEmailUrl = DEEP_PURPLE_API_HOST + ":" + DEEP_PURPLE_API_PORT + "/" + "api/registerUser";
+    ApiUtils.apiPostRequest(confirmEmailUrl, req.body).then((apiResponse: Response) => {
+        res.status(200).json(apiResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/login", passport.authenticate("local"), (req, res) => {
+    res.status(200).json(req.user);
+})
+
+app.get("/logout", (req, res, next) => {
+    req.logout();
+    res.redirect("/login");
+})
+
 app.get("/login", (req, res) => {
+    if (req.user) res.redirect("/")
     res.sendFile(path.join(__dirname, "./../client/login.html"))
 })
 

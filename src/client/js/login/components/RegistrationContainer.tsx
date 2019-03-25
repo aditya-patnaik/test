@@ -7,6 +7,7 @@ import UserTypeSelector from "./UserTypeSelector";
 
 export interface RegistrationContainerProps {
     email: string;
+    onRegistrationSuccess: () => void;
 }
 
 export interface RegistrationContainerState {
@@ -26,7 +27,7 @@ export default class RegistrationContainer extends React.Component<RegistrationC
         })
     }
     formToDisplay = () => {
-        if (this.state.selectedType === 1) return <PatientRegistrationForm email={this.props.email} />
+        if (this.state.selectedType === 1) return <PatientRegistrationForm email={this.props.email} onRegistrationSuccess={this.props.onRegistrationSuccess} />
         else if (this.state.selectedType === 2) return <DoctorRegistrationForm />
         else if (this.state.selectedType === 3) return <InstitutionRegistrationForm />
         else return <LabRegistration />

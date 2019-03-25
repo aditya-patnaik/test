@@ -1,0 +1,29 @@
+.topnav-container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  height: 45px;
+  z-index: 100;
+  background: white;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: 0 0 10px lightgrey;
+
+  .left-content {
+    padding: 0 20px;
+    .logo-container {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 7px;
+      }
+    }
+  }
+
+  .right-content {
+    padding: 0 20px;
+    font-size: 20px;
+  }
+}

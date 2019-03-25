@@ -8,6 +8,7 @@ export interface RegisterEmailProps {
 
 export interface RegisterEmailState {
     email: string;
+    registrationError: string;
     otp: string;
 }
 
@@ -16,6 +17,7 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
         super(props);
         this.state = {
             email: "",
+            registrationError: null,
             otp: null
         }
     }
@@ -34,6 +36,10 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
             RegistrationActions.registerEmail(this.state.email).then((data) => {
                 this.setState({
                     otp: ""
+                })
+            }).catch((err: any) => {
+                this.setState({
+                    registrationError: err.msg
                 })
             })
         } else {
@@ -61,6 +67,10 @@ class RegisterEmail extends React.Component<RegisterEmailProps, RegisterEmailSta
                 <div className="form-row">
                     <input type="button" onClick={this.onSubmit} className="btn btn-primary btn-sm register-btn" value="Register" />
                 </div>
+                {
+                    this.state.registrationError &&
+                        <div className={"registration-error"}>{this.state.registrationError}</div>
+                }
                 <div className={"login-user"}>
                     <span>Already registered? <Link to={"login"}>Login here</Link></span>
                 </div>

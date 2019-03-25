@@ -1,5 +1,6 @@
 import * as React from "react"
 import {Link} from "react-router-dom";
+import {RegistrationActions} from "../actions/RegistrationActions";
 
 export interface LoginContainerProps {
 
@@ -8,6 +9,7 @@ export interface LoginContainerProps {
 interface LoginContainerState {
     email: string;
     password: string;
+    loginError: string;
 }
 
 class LoginContainer extends React.Component<LoginContainerProps, LoginContainerState> {
@@ -15,7 +17,8 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            loginError: null
         }
     }
     onEmailChange = (evt: any) => {
@@ -28,8 +31,14 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
             password: evt.target.value
         })
     }
-    onSubmit = (evt: any) => {
-
+    onLogin = (evt: any) => {
+        RegistrationActions.loginUser(this.state.email, this.state.password).then(() => {
+            window.location.href = "/";
+        }).catch(() => {
+            this.setState({
+                loginError: "Incorrect username / password"
+            })
+        });
     }
     render() {
         return (
@@ -39,14 +48,18 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
                     <label>mediSOT</label>
                 </div>
                 <div className="form-row">
-                    <input type="text" value={this.state.email} onChange={this.onEmailChange} className="form-control form-control-sm" placeholder="Email" />
+                    <input name={"username"} type="text" value={this.state.email} onChange={this.onEmailChange} className="form-control form-control-sm" placeholder="Email" />
                 </div>
                 <div className="form-row">
-                    <input type="password" value={this.state.password} onChange={this.onPasswordChange} className="form-control form-control-sm" placeholder="Password" />
+                    <input name={"password"} type="password" value={this.state.password} onChange={this.onPasswordChange} className="form-control form-control-sm" placeholder="Password" />
                 </div>
                 <div className="form-row">
-                    <input type="button" onClick={this.onSubmit} className="btn btn-primary btn-sm register-btn" value="Login" />
+                    <input type="button" onClick={this.onLogin} className="btn btn-primary btn-sm register-btn" value="Login" />
                 </div>
+                {
+                    this.state.loginError &&
+                    <div className={"login-error"}>Incorrect username / password</div>
+                }
                 <div className={"register-user"}>
                     <span>Haven't registered yet? <Link to={"register"}>Register here</Link></span>
                 </div>

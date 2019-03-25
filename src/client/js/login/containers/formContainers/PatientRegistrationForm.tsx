@@ -1,17 +1,21 @@
 import * as React from "react";
 import DatePicker from "react-datepicker";
+import {RegistrationActions} from "../../actions/RegistrationActions";
 
 export interface PatientRegistrationFormProps {
     email: string;
+    onRegistrationSuccess: () => void;
 }
 
 export interface PatientRegistrationFormState {
     email: string;
+    username: string;
     name: string;
     phone: string;
     uniqueGovtID: string;
     dob: Date;
     password: any;
+    registrationError: string;
 }
 
 export default class PatientRegistrationForm extends React.Component<PatientRegistrationFormProps, PatientRegistrationFormState> {
@@ -19,11 +23,13 @@ export default class PatientRegistrationForm extends React.Component<PatientRegi
         super(props);
         this.state = {
             email: props.email,
+            username: "",
             name: "",
             phone: "",
             uniqueGovtID: "",
             dob: null,
-            password: ""
+            password: "",
+            registrationError: null
         }
     }
     onEmailChange = (evt: any) => {
@@ -34,6 +40,11 @@ export default class PatientRegistrationForm extends React.Component<PatientRegi
     onNameChange = (evt: any) => {
         this.setState({
             name: evt.target.value
+        })
+    }
+    onUsernameChange = (evt: any) => {
+        this.setState({
+            username: evt.target.value
         })
     }
     onPhoneChange = (evt: any) => {
@@ -67,11 +78,30 @@ export default class PatientRegistrationForm extends React.Component<PatientRegi
             password: evt.target.value
         })
     }
+    onSubmit = (evt: any) => {
+        RegistrationActions.registerUser({
+            username: this.state.username,
+            name: this.state.name,
+            dob: this.state.dob,
+            phone: this.state.phone,
+            email: this.state.email,
+            uniqueGovtID: this.state.uniqueGovtID
+        }, this.state.password).then(() => {
+            this.props.onRegistrationSuccess()
+        }).catch((err) => {
+            this.setState({
+                registrationError: err.msg
+            })
+        });
+    }
     render() {
         return (
-            <div>
+            <div className={"user-registration-form-container"}>
                 <div className="form-row">
                     <input type="text" disabled={true} value={this.state.email} onChange={this.onEmailChange} className="form-control form-control-sm" placeholder="Email" />
+                </div>
+                <div className="form-row">
+                    <input type="text" value={this.state.username} onChange={this.onUsernameChange} className="form-control form-control-sm" placeholder="Username" />
                 </div>
                 <div className="form-row">
                     <input type="text" value={this.state.name} onChange={this.onNameChange} className="form-control form-control-sm" placeholder="Name" />
@@ -91,7 +121,13 @@ export default class PatientRegistrationForm extends React.Component<PatientRegi
                 <div className="form-row">
                     <input type="password" value={this.state.password} onChange={this.onPasswordChange} className="form-control form-control-sm" placeholder="Password" />
                 </div>
-                <div className="form-row"><input type="button" className="btn btn-primary btn-sm register-btn" value="Submit" /></div>
+                <div className="form-row">
+                    <input type="button" className="btn btn-primary btn-sm register-btn" value="Submit" onClick={this.onSubmit} />
+                </div>
+                {
+                    this.state.registrationError &&
+                    <div className="registration-error-container">{this.state.registrationError}</div>
+                }
             </div>
         )
     }

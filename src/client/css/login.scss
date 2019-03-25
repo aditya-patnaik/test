@@ -124,6 +124,17 @@ input[type="text"]::placeholder, input[type="password"]::placeholder {
       font-size: 12px;
       margin-top: 20px;
     }
+    .registration-error {
+      color: crimson;
+      font-size: 12px;
+    }
+  }
+
+  .user-registration-form-container {
+    .registration-error-container {
+      color: crimson;
+      font-size: 12px;
+    }
   }
 }
 
@@ -135,5 +146,10 @@ input[type="text"]::placeholder, input[type="password"]::placeholder {
   .register-user {
     font-size: 12px;
     margin-top: 20px;
+  }
+
+  .login-error {
+    font-size: 12px;
+    color: crimson;
   }
 }

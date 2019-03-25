@@ -1,6 +1,7 @@
 import * as React from "react"
 import RegisterEmail from "../components/RegisterEmail";
 import RegistrationContainer from "../components/RegistrationContainer";
+import SuccessfulRegistration from "./SuccessfulRegistration";
 
 interface RegistrationFlowState {
     email: string;
@@ -21,6 +22,11 @@ class RegistrationFlow extends React.Component<{}, RegistrationFlowState> {
             step: 2
         })
     }
+    onRegistrationSuccess = () => {
+        this.setState({
+            step: 3
+        })
+    }
     render() {
         return (
             <div className={"registration-flow-container"}>
@@ -30,7 +36,11 @@ class RegistrationFlow extends React.Component<{}, RegistrationFlowState> {
                 }
                 {
                     this.state.step === 2 &&
-                        <RegistrationContainer email={this.state.email} />
+                        <RegistrationContainer email={this.state.email} onRegistrationSuccess={this.onRegistrationSuccess} />
+                }
+                {
+                    this.state.step === 3 &&
+                        <SuccessfulRegistration />
                 }
             </div>
         )

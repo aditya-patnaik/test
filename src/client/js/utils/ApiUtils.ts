@@ -18,8 +18,18 @@ export class ApiUtils {
                 method: "POST",
                 body: JSON.stringify(body),
                 headers: new Headers({"Content-Type" : "application/json"})
-            }).then((data: any) => {
-                resolve(data)
+            }).then((response: any) => {
+                if (response.status >= 200 && response.status < 400) {
+                    response.json().then((body: any) => {
+                        resolve(body);
+                    })
+                } else {
+                    response.json().then((body: any) => {
+                        reject(body);
+                    }).catch((err: any) => {
+                        reject(err);
+                    })
+                }
             }).catch((err) => {
                 console.log(err);
                 reject(err);
