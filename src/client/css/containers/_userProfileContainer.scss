@@ -1,0 +1,13 @@
+.user-profile-container {
+  padding: 20px;
+
+  .profile-details-container {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid lightgrey;
+
+    &:last-child {
+      border-color: transparent;
+    }
+  }
+}

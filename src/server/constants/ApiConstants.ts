@@ -1,1 +1,9 @@
 export const CHECK_AUTH_URL = "api/checkAuth";
+export const GET_USER_PROFILE = "api/query";
+export const GET_USER_BY_USERNAME_URL = "api/invoke";
+export const SHARE_EMR_WITH_DOCTOR = "api/shareDoctor";
+export const SHARE_EMR_WITH_PHARMACY = "api/sharePharmacy";
+export const SHARE_EMR_WITH_LAB = "api/shareLab";
+export const GET_ACCESSIBLE_EMRS = "api/query";
+export const GET_EMR_BY_ID = "api/query";
+export const SAVE_EMR = "api/saveEmr";

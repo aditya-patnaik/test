@@ -1,4 +1,5 @@
 import * as React from "react"
+import * as _ from "lodash"
 import ViewSection from "../../components/common/Section";
 import ComponentList from "../../components/common/ComponentList";
 import SimpleInputRow from "../../components/rowComponents/SimpleInputRow";
@@ -15,7 +16,7 @@ class ChiefComplaints extends React.Component<ChiefComplaintsProps, ChiefComplai
     constructor(props: ChiefComplaintsProps) {
         super(props);
         this.state = {
-            data: props.complaints
+            data: props.complaints ? props.complaints : []
         }
     }
     onDataChange = (data: any[]) => {
@@ -27,6 +28,15 @@ class ChiefComplaints extends React.Component<ChiefComplaintsProps, ChiefComplai
         this.setState({
             data: currData
         })
+    }
+    getSaveObject = (): string[] => {
+        let data: string[] = []
+        _.map(this.state.data, (row) => {
+            if (!_.isEmpty(row)) {
+                data.push(row)
+            }
+        })
+        return data;
     }
     render() {
         return (

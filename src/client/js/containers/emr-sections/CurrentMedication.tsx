@@ -2,6 +2,7 @@ import * as React from "react"
 import ViewSection from "../../components/common/Section";
 import ComponentList from "../../components/common/ComponentList";
 import SimpleInputRow from "../../components/rowComponents/SimpleInputRow";
+import * as _ from "lodash";
 
 export interface CurrentMedicationProps {
     medication: string[];
@@ -15,7 +16,7 @@ class CurrentMedication extends React.Component<CurrentMedicationProps, CurrentM
     constructor(props: CurrentMedicationProps) {
         super(props);
         this.state = {
-            data: props.medication
+            data: props.medication ? props.medication : []
         }
     }
     onDataChange = (data: any[]) => {
@@ -27,6 +28,15 @@ class CurrentMedication extends React.Component<CurrentMedicationProps, CurrentM
         this.setState({
             data: currData
         })
+    }
+    getSaveObject = (): string[] => {
+        let data: string[] = []
+        _.map(this.state.data, (row) => {
+            if (!_.isEmpty(row)) {
+                data.push(row)
+            }
+        })
+        return data;
     }
     render() {
         return (

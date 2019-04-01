@@ -1,0 +1,33 @@
+.tag-input-container {
+  .tags-container {
+    display: inline-block;
+
+    .tag {
+      padding: 5px 10px;
+      background: beige;
+      font-size: 12px;
+      border-radius: 7px;
+      margin-right: 10px;
+    }
+  }
+  .text-input-wrapper {
+    display: inline-block;
+    position: relative;
+
+    .options-container {
+      position:absolute;
+      background: white;
+      font-size: 12px;
+      box-shadow: 0 2px 2px lightgrey;
+      width: 100%;
+      z-index: 10;
+
+      .option {
+        padding: 4px;
+        &:hover {
+          background: aliceblue;
+        }
+      }
+    }
+  }
+}

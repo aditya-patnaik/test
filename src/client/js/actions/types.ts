@@ -1,0 +1,5 @@
+export const UPDATE_USER = "UPDATE_USER"
+export const SWITCH_ROLE = "SWITCH_ROLE"
+export const SHOW_MODAL = "SHOW_MODAL"
+export const HIDE_MODAL = "HIDE_MODAL"
+export const UPDATE_MODAL = "UPDATE_MODAL"

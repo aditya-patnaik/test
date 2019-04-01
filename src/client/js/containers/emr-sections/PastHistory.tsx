@@ -2,6 +2,7 @@ import * as React from "react"
 import ViewSection from "../../components/common/Section";
 import ComponentList from "../../components/common/ComponentList";
 import SimpleInputRow from "../../components/rowComponents/SimpleInputRow";
+import * as _ from "lodash";
 
 export interface PastHistoryProps {
     history: string[];
@@ -15,7 +16,7 @@ class PastHistory extends React.Component<PastHistoryProps, PastHistoryState> {
     constructor(props: PastHistoryProps) {
         super(props);
         this.state = {
-            data: props.history
+            data: props.history ? props.history : []
         }
     }
     addRow = () => {
@@ -27,6 +28,15 @@ class PastHistory extends React.Component<PastHistoryProps, PastHistoryState> {
     }
     onDataChange = (data: any[]) => {
         this.setState({data})
+    }
+    getSaveObject = (): string[] => {
+        let data: string[] = []
+        _.map(this.state.data, (row) => {
+            if (!_.isEmpty(row)) {
+                data.push(row)
+            }
+        })
+        return data;
     }
     render() {
         return (

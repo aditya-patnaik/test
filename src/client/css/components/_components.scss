@@ -1,9 +1,14 @@
 @import "./formElements/textInput";
+@import "./formElements/tagInput";
 @import "./formElements/button";
 @import "./common/componentList";
 @import "./common/section";
+@import "./common/customDropdown";
 @import "./basic/textInput";
 @import "./common/navLink";
 @import "./patient/patientCard";
 @import "./patient/patientFilter";
 @import "./patient/patientList";
+@import "./profile/basicDetails";
+@import "./roleSwitcher";
+@import "./modals/modals";

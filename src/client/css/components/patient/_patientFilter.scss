@@ -6,4 +6,27 @@
     .patient-name-filter-container {
         margin-bottom: 10px;
     }
+
+    .patient-group-filter-container {
+        margin-bottom: 20px;
+
+        .radio-btn-container {
+            display: inline-block;
+            padding: 5px 10px 5px 0;
+            font-size: 12px;
+
+            input[type=radio] {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .search-btn {
+        .spinner-gif {
+            height: 20px;
+            vertical-align: middle;
+        }
+    }
+
+
 }

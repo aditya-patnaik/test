@@ -1,0 +1,34 @@
+.role-switcher-container {
+  display: inline-block;
+  font-size: 12px;
+  vertical-align: middle;
+  margin-right: 20px;
+  cursor: pointer;
+  outline: none;
+  min-width: 100px;
+  text-align: center;
+  position: relative;
+
+  .roles-list-container {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0 1px 2px grey;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 7px;
+
+    .role-row {
+      padding: 3px 5px;
+
+      &:hover {
+        background: aliceblue;
+      }
+    }
+  }
+
+  &:focus .roles-list-container {
+    display: block;
+  }
+}

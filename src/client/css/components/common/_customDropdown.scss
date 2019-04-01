@@ -1,0 +1,45 @@
+.custom-dropdown-container {
+  position: relative;
+  cursor: default;
+  font-size: 14px;
+  display: inline-block;
+  min-width: 100px;
+
+  .main-label {
+    padding: 5px 10px;
+    width: 100%;
+    i {
+      margin-left: 10px;
+    }
+    &.default {
+      color: lightgrey;
+    }
+  }
+
+  .dropdown-options-container {
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 0 7px lightgrey;
+    margin-top: -1px;
+
+    .dropdown-item {
+      font-size: 13px;
+      padding: 5px 10px;
+      border-bottom: 1px solid lightgrey;
+
+      &:hover {
+        background: aliceblue;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  &:hover {
+    .dropdown-options-container {
+      visibility: visible;
+    }
+  }
+}

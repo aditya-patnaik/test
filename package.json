@@ -32,7 +32,10 @@
     "react": "^16.8.3",
     "react-datepicker": "^2.2.0",
     "react-dom": "^16.8.3",
-    "react-router-dom": "^5.0.0"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.1",
@@ -40,6 +43,9 @@
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/passport-local": "^1.0.33",
     "@types/react-datepicker": "^2.2.0",
+    "@types/react-redux": "^7.0.5",
+    "@types/redux": "^3.6.0",
+    "@types/redux-thunk": "^2.1.0",
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",

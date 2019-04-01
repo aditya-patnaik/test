@@ -8,6 +8,7 @@ import {DEEP_PURPLE_API_HOST, DEEP_PURPLE_API_PORT, PORT} from "./configs/config
 import authenticationMiddleware from "./authentication/authenticationMiddleware";
 import {BootstrapPassport} from "./authentication/BootstrapPassport";
 import {ApiUtils} from "./utils/ApiUtils";
+import ChainCodeService from "./services/ChainCodeService";
 /* import MongoUtils from "./utils/MongoUtils";
 MongoUtils.initialiseMongo();
 import mongoose from "./db/mongoose"; */
@@ -59,6 +60,72 @@ app.post("/deepPurple/api/registerUser", (req, res) => {
     const confirmEmailUrl = DEEP_PURPLE_API_HOST + ":" + DEEP_PURPLE_API_PORT + "/" + "api/registerUser";
     ApiUtils.apiPostRequest(confirmEmailUrl, req.body).then((apiResponse: Response) => {
         res.status(200).json(apiResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.get("/getUserProfile", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.getUserProfile(req.user).then((userProfile: any) => {
+        res.status(200).json(userProfile);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.get("/getAccessibleEmrs", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.getAccessibleEmrs(req.user).then((emrs: any) => {
+        res.status(200).json(emrs);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.get("/getEmrById", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.getEmrById(req.user, req.query.emrId).then((emrs: any) => {
+        res.status(200).json(emrs);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/saveEmr", authenticationMiddleware(), (req, res) => {
+    let emr = req.body;
+    let emrId = req.query.emrId;
+    ChainCodeService.saveEmr(emr, emrId, req.user).then((emrs: any) => {
+        res.status(200).json(emrs);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/getUserFromUsername", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.getUserFromUsername(req.body).then((userQueryResponse: any) => {
+        res.status(200).json(userQueryResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/deepPurple/api/shareDoctor", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.shareEmrWithDoctor(req.body).then((userQueryResponse: any) => {
+        res.status(200).json(userQueryResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/deepPurple/api/sharePharmacy", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.shareEmrWithPharmacy(req.body).then((userQueryResponse: any) => {
+        res.status(200).json(userQueryResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/deepPurple/api/shareLab", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.shareEmrWithLab(req.body).then((userQueryResponse: any) => {
+        res.status(200).json(userQueryResponse);
     }).catch((err: any) => {
         res.status(500).json(err);
     })

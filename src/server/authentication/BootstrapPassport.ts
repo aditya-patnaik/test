@@ -13,7 +13,7 @@ function checkAuth(username: string, password: string, done: any): any {
 
 export const BootstrapPassport = () => {
     passport.serializeUser((user: any, callback: any) => {
-        callback(null, user.email)
+        callback(null, user.userName)
     })
 
     passport.deserializeUser((email: string, callback: any) => {

@@ -2,6 +2,7 @@ import * as React from "react"
 import ViewSection from "../../components/common/Section";
 import ComponentList from "../../components/common/ComponentList";
 import SimpleInputRow from "../../components/rowComponents/SimpleInputRow";
+import * as _ from "lodash";
 
 export interface FamilyHistoryProps {
     history: string[];
@@ -15,7 +16,7 @@ class FamilyHistory extends React.Component<FamilyHistoryProps, FamilyHistorySta
     constructor(props: FamilyHistoryProps) {
         super(props);
         this.state = {
-            data: props.history
+            data: props.history ? props.history : []
         }
     }
     addRow = () => {
@@ -27,6 +28,15 @@ class FamilyHistory extends React.Component<FamilyHistoryProps, FamilyHistorySta
     }
     onDataChange = (data: any[]) => {
         this.setState({data})
+    }
+    getSaveObject = (): string[] => {
+        let data: string[] = []
+        _.map(this.state.data, (row) => {
+            if (!_.isEmpty(row)) {
+                data.push(row)
+            }
+        })
+        return data;
     }
     render() {
         return (

@@ -2,6 +2,7 @@ import * as React from "react"
 import ViewSection from "../../components/common/Section";
 import ComponentList from "../../components/common/ComponentList";
 import SimpleInputRow from "../../components/rowComponents/SimpleInputRow";
+import * as _ from "lodash";
 
 export interface AllergiesProps {
     allergies: string[];
@@ -15,7 +16,7 @@ class Allergies extends React.Component<AllergiesProps, AllergiesState> {
     constructor(props: AllergiesProps) {
         super(props);
         this.state = {
-            data: props.allergies
+            data: props.allergies ? props.allergies : []
         }
     }
     addRow = () => {
@@ -27,6 +28,15 @@ class Allergies extends React.Component<AllergiesProps, AllergiesState> {
     }
     onDataChange = (data: any[]) => {
         this.setState({data})
+    }
+    getSaveObject = (): string[] => {
+        let data: string[] = []
+        _.map(this.state.data, (row) => {
+            if (!_.isEmpty(row)) {
+                data.push(row)
+            }
+        })
+        return data;
     }
     render() {
         return (

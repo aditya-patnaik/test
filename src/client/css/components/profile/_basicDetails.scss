@@ -1,0 +1,24 @@
+.basic-details-container {
+  h2 {
+    margin-left: 100px;
+  }
+  .row {
+    margin: 10px 0;
+
+    .label-container {
+      text-align: right;
+      width: 14%;
+      display: inline-block;
+      font-size: 14px;
+      margin-right: 20px;
+      vertical-align: top;
+    }
+    .input-container {
+      display: inline-block;
+
+      input {
+        font-size: 12px;
+      }
+    }
+  }
+}

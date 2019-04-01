@@ -1,0 +1,19 @@
+.my-emr-container {
+  padding: 20px;
+
+  .select-emr-label-container {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 10px;
+
+    .select-emr-label {
+      font-size: 13px;
+      font-weight: bold;
+    }
+  }
+
+  .emr-selector-container {
+    display: inline-block;
+  }
+}

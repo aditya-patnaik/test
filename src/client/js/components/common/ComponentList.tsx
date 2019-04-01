@@ -6,6 +6,7 @@ export interface ComponentListProps {
     data: any[];
     onRowAddition: () => void;
     onDataChange: (data: any[]) => void;
+    hideRowAddition?: boolean;
 }
 
 export interface ComponentListState {
@@ -47,9 +48,12 @@ class ComponentList extends React.Component<ComponentListProps, ComponentListSta
                             </div>
                     })
                 }
-                <div className="add-row-container">
-                    <span onClick={this.props.onRowAddition}>+ Add occurence</span>
-                </div>
+                {
+                    !this.props.hideRowAddition &&
+                    <div className="add-row-container">
+                        <span onClick={this.props.onRowAddition}>+ Add occurence</span>
+                    </div>
+                }
             </div>
         )
     }

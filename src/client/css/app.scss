@@ -7,9 +7,17 @@ html, body {
     margin: 0px;
 }
 
+.main-app-loader {
+    text-align: center;
+}
+
 #app {
     .main-content-container {
         margin-left: 220px;
         margin-top: 45px;
     }
+}
+
+.grant-access-container {
+    padding: 20px;
 }
