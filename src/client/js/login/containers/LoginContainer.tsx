@@ -66,7 +66,7 @@ class LoginContainer extends React.Component<LoginContainerProps, LoginContainer
                            value={this.state.email}
                            onChange={this.onEmailChange}
                            className="form-control form-control-sm"
-                           placeholder="Email" />
+                           placeholder="Username" />
                 </div>
                 <div className="form-row">
                     <input name={"password"} type="password" value={this.state.password} onChange={this.onPasswordChange} className="form-control form-control-sm" placeholder="Password" />

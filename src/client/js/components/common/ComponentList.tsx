@@ -51,7 +51,7 @@ class ComponentList extends React.Component<ComponentListProps, ComponentListSta
                 {
                     !this.props.hideRowAddition &&
                     <div className="add-row-container">
-                        <span onClick={this.props.onRowAddition}>+ Add occurence</span>
+                        <span onClick={this.props.onRowAddition}>+ Add more</span>
                     </div>
                 }
             </div>

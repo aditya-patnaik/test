@@ -1,6 +1,6 @@
-import * as React from "react";
-import DatePicker from "react-datepicker";
-import {RegistrationActions} from "../../actions/RegistrationActions";
+import * as React from "react"
+import DatePicker from "react-datepicker"
+import {RegistrationActions} from "../../actions/RegistrationActions"
 
 export interface PatientRegistrationFormProps {
     email: string;
