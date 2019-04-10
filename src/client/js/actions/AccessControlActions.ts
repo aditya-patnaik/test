@@ -5,9 +5,10 @@ const SHARE_ACCESS_TO_PHARMACY = "/deepPurple/api/sharePharmacy"
 const SHARE_ACCESS_TO_LAB = "/deepPurple/api/shareLab"
 
 class AccessControlActions {
-    static shareAccessToDoctor(userToShare: string, myUserName: string) {
+    static shareAccessToDoctor(userToShare: string, myUserName: string, newEmr: boolean) {
         let body = {
             "args": {"userToShare": userToShare, "durationInSeconds": 36000},
+            "newEMR": newEmr,
             "user": myUserName
         }
         return ApiUtils.apiPostRequest(SHARE_ACCESS_TO_DOCTOR, body);

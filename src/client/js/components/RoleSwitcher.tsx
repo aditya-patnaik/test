@@ -5,8 +5,13 @@ import UserActions from "./../actions/UserActions";
 import {IUserProfile} from "../../../server/models/IUserProfile";
 import {IAppState} from "../reducers";
 import {Dispatch} from "redux";
+import {withRouter} from "react-router-dom";
 
-type RoleSwitcherProps = IMapStateToProps & IMapDispatchToProps;
+interface RoleSwitcherRouterProps {
+    history?: any;
+}
+
+type RoleSwitcherProps = IMapStateToProps & IMapDispatchToProps & RoleSwitcherRouterProps;
 
 class RoleSwitcher extends React.Component<RoleSwitcherProps> {
     getDisplayName = (role: string) => {
@@ -24,8 +29,11 @@ class RoleSwitcher extends React.Component<RoleSwitcherProps> {
         return roles;
     }
     switchRole = (evt: any, role: string) => {
-        evt.currentTarget.parentElement.parentElement.blur();
-        this.props.switchRole(role);
+        if (this.props.currentRole !== role) {
+            evt.currentTarget.parentElement.parentElement.blur();
+            this.props.switchRole(role);
+            this.props.history.push("/");
+        }
     }
     render() {
         let roles = this.getAvailableRoles();
@@ -72,4 +80,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-export default connect<IMapStateToProps, IMapDispatchToProps>(mapStateToProps, mapDispatchToProps)(RoleSwitcher);
+export default withRouter(connect<IMapStateToProps, IMapDispatchToProps>(mapStateToProps, mapDispatchToProps)(RoleSwitcher) as any);

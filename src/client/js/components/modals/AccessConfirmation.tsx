@@ -14,6 +14,7 @@ export interface RawAccessConfirmationProps {
 }
 
 interface AccessConfirmationState {
+    newEmr: boolean;
     isLoading: boolean;
     err: any;
 }
@@ -25,6 +26,7 @@ class AccessConfirmation extends React.Component<AccessConfirmationProps, Access
         super(props)
         this.state = {
             isLoading: false,
+            newEmr: true,
             err: null
         }
     }
@@ -35,7 +37,7 @@ class AccessConfirmation extends React.Component<AccessConfirmationProps, Access
             isLoading: true
         }, () => {
             if (this.props.userGroup === "doctor") {
-                this.props.shareAccessToDoctor(userToShare, myUserName).then((result: any) => {
+                this.props.shareAccessToDoctor(userToShare, myUserName, this.state.newEmr).then((result: any) => {
                     this.props.hideModal()
                 }).catch((err: any) => {
                     this.setState({err})
@@ -67,6 +69,11 @@ class AccessConfirmation extends React.Component<AccessConfirmationProps, Access
             }
         })
     }
+    onCheckBoxClick = (evt: any) => {
+        this.setState({
+            newEmr: evt.currentTarget.checked
+        });
+    }
     render() {
         return (
             <div className="access-confirmation-modal">
@@ -74,6 +81,13 @@ class AccessConfirmation extends React.Component<AccessConfirmationProps, Access
                 {
                     this.state.err &&
                         <div>{this.state.err}</div>
+                }
+                {
+                    this.props.userGroup === "doctor" &&
+                    <div className={"checkbox-container"}>
+                        <input type={"checkbox"} checked={this.state.newEmr} onClick={this.onCheckBoxClick} />
+                        <span>Select this option if you want the Doctor to be able to create a new EMR</span>
+                    </div>
                 }
                 <div className="button-container">
                     <Button onBtnClick={this.giveAccess} text={"Yes"}>
@@ -100,15 +114,15 @@ const mapStateToProps = (state: IAppState) => {
 }
 
 interface IMapDispatchToProps {
-    shareAccessToDoctor: (userToShare: string, username: string) => Promise<any>
+    shareAccessToDoctor: (userToShare: string, username: string, newEmr: boolean) => Promise<any>
     shareAccessToPharmacy: (userToShare: string, username: string, emrId: string) => Promise<any>
     shareAccessToLab: (userToShare: string, username: string, emrId: string) => Promise<any>
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        shareAccessToDoctor: (userToShare: string, username: string) => {
-            return AccessControlActions.shareAccessToDoctor(userToShare, username)
+        shareAccessToDoctor: (userToShare: string, username: string, newEmr: boolean) => {
+            return AccessControlActions.shareAccessToDoctor(userToShare, username, newEmr)
         },
         shareAccessToPharmacy: (userToShare: string, username: string, emrId: string) => {
             return AccessControlActions.shareAccessToPharmacy(userToShare, username, emrId)
