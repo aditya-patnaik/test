@@ -8,7 +8,7 @@ class AccessControlActions {
     static shareAccessToDoctor(userToShare: string, myUserName: string, newEmr: boolean) {
         let body = {
             "args": {"userToShare": userToShare, "durationInSeconds": 36000},
-            "newEMR": newEmr,
+            "allowCreation": newEmr,
             "user": myUserName
         }
         return ApiUtils.apiPostRequest(SHARE_ACCESS_TO_DOCTOR, body);
