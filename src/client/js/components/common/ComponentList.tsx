@@ -7,6 +7,7 @@ export interface ComponentListProps {
     onRowAddition: () => void;
     onDataChange: (data: any[]) => void;
     hideRowAddition?: boolean;
+    meta?: any;
 }
 
 export interface ComponentListState {
@@ -39,7 +40,7 @@ class ComponentList extends React.Component<ComponentListProps, ComponentListSta
                                 <div className="row-component-container">
                                     <RowComponent data={data} onDataChange={(data: any) => {
                                             this.onDataChange(data, index)
-                                        }} />
+                                        }} meta={this.props.meta} />
                                 </div>
                                 <div className="remove-row-container">
                                     <button className="remove-row-button"

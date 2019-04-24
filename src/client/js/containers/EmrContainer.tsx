@@ -92,6 +92,7 @@ class EmrContainer extends React.Component<ComponentProps, EmrContainerState> {
                     (this.props.userGroup === "DOCTOR" || this.props.userGroup === "PATIENT" || this.props.userGroup === "LAB") &&
                     <DiagnosticTests ref={(myref) => this.diagnosticTestsRef = myref}
                                      isReadOnly={this.props.userGroup === "LAB"}
+                                     userGroup={this.props.userGroup}
                                      diagnosticTests={this.state.patientEmr.diagnosticTestsAdvised} />
                 }
                 {/* Examination

@@ -1,11 +1,12 @@
 import * as React from "react"
 import ViewSection from "../../components/common/Section";
 import ComponentList from "../../components/common/ComponentList";
-import SimpleInputRow from "../../components/rowComponents/SimpleInputRow";
 import * as _ from "lodash";
+import DiagnosticTestsRow from "../../components/rowComponents/DiagnosticTestsRow";
 
 export interface DiagnosticTestsProps {
     diagnosticTests: string[];
+    userGroup: string;
     isReadOnly?: boolean;
 }
 
@@ -40,13 +41,15 @@ class DiagnosticTests extends React.Component<DiagnosticTestsProps, DiagnosticTe
         return data;
     }
     render() {
+        let meta = { userGroup: this.props.userGroup };
         return (
             <ViewSection header="Diagnostic Tests">
                 <ComponentList onDataChange={this.onDataChange}
                                onRowAddition={this.addRow}
                                hideRowAddition={this.props.isReadOnly}
-                               rowComponent={SimpleInputRow}
-                               data={this.state.data} />
+                               rowComponent={DiagnosticTestsRow}
+                               data={this.state.data}
+                               meta={meta} />
             </ViewSection>
         )
     }

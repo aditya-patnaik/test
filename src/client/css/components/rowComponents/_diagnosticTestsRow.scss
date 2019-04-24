@@ -1,0 +1,13 @@
+.diagnostic-tests-row {
+    .diagnostic-test-prescribed {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .diagnostic-test-report {
+        display: inline-block;
+    }
+    input[type=text] {
+        font-size: 11px;
+        margin: 10px 0;
+    }
+}
