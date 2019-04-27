@@ -13,6 +13,7 @@ import GrantAccessContainer from "./containers/GrantAccessContainer";
 import ModalContainer from "./containers/ModalContainer";
 import MyPatientsContainer from "./containers/patient/MyPatientsContainer";
 import MyEmrContainer from "./containers/MyEmrContainer";
+import MyVitalsContainer from "./containers/MyVitalsContainer";
 
 type MainProps = IMapStateToProps & IMapDispatchToProps;
 
@@ -37,6 +38,7 @@ class Main extends React.Component<MainProps> {
                         <div className="main-content-container">
                             <Route path="/emr/:patientId?/:emrId?" component={EmrWrapperContainer} />
                             <Route path="/my-emr/:emrId?" component={MyEmrContainer} />
+                            <Route path="/my-vitals" component={MyVitalsContainer} />
                             <Route path="/profile" component={UserProfileContainer} />
                             <Route path="/grant-access" component={GrantAccessContainer} />
                             <Route path="/my-patients" component={MyPatientsContainer} />

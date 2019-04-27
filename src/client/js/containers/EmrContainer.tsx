@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import PatientActions from "../actions/PatientActions";
 import Button from "../components/formElements/Button";
 import {IAppState} from "../reducers";
+import VitalsContainer from "./vitals/VitalsContainer";
 
 export interface EmrContainerProps {
     rawEmr: any;
@@ -78,6 +79,7 @@ class EmrContainer extends React.Component<ComponentProps, EmrContainerState> {
     render() {
         return (
             <div className="emr-container">
+                <VitalsContainer />
                 {
                     (this.props.userGroup === "DOCTOR" || this.props.userGroup === "PATIENT") &&
                     <div>

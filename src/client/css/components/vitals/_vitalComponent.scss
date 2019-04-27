@@ -1,0 +1,25 @@
+.vitals-container {
+    font-size: 12px;
+    .vital-value-container {
+        display: inline-block;
+        margin-right: 20px;
+
+        .vital-input-container {
+            width: 60px;
+            margin-top: 10px;
+
+            input {
+                width: 100%;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .save-btn-container {
+        margin-top: 20px;
+    }
+
+    .no-recorded-values {
+        margin-top: 20px;
+    }
+}

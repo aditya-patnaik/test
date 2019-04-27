@@ -4,6 +4,8 @@ export const GET_USER_BY_USERNAME = "/getUserFromUsername"
 export const GET_ACCESSIBLE_EMRS = "/getAccessibleEmrs"
 export const GET_EMR_BY_ID = "/getEmrById?emrId=$emrId"
 export const SAVE_EMR = "/saveEmr?emrId=$emrId"
+export const GET_VITALS = "/getVitals?username=$userId"
+export const SAVE_VITALS = "/saveVitals"
 
 export default class PatientActions {
     static searchPatients = (username: string, userGroups: string[]): Promise<any> => {
@@ -36,5 +38,13 @@ export default class PatientActions {
 
     static saveEmr = (emrId: string, emr: any): Promise<any> => {
         return ApiUtils.apiPostRequest(SAVE_EMR.replace("$emrId", emrId), emr)
+    }
+
+    static getVitals = (username: string) => {
+        return ApiUtils.apiGetRequest(GET_VITALS.replace("$userId", username))
+    }
+
+    static saveVitals = (vitals: any) => {
+        return ApiUtils.apiPostRequest(SAVE_VITALS, vitals);
     }
 }

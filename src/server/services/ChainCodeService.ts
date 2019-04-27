@@ -4,7 +4,7 @@ import {
     CHECK_AUTH_URL, GET_ACCESSIBLE_EMRS, GET_EMR_BY_ID,
     GET_USER_BY_USERNAME_URL,
     GET_USER_PROFILE, SAVE_EMR,
-    SHARE_EMR_WITH_DOCTOR, SHARE_EMR_WITH_LAB, SHARE_EMR_WITH_PHARMACY
+    SHARE_EMR_WITH_DOCTOR, SHARE_EMR_WITH_LAB, SHARE_EMR_WITH_PHARMACY, SAVE_VITAL, GET_VITAL
 } from "../constants/ApiConstants";
 
 export default class ChainCodeService {
@@ -50,5 +50,23 @@ export default class ChainCodeService {
             user: username
         }
         return ApiUtils.apiPostRequest(UrlUtils.getChainCodeServiceUrl(SAVE_EMR), body);
+    }
+
+    static getVitals(vitalsUser: string, loggedInUser: string) {
+        let body = {
+            func: "viewVitals",
+            args: vitalsUser,
+            user: loggedInUser
+        }
+        return ApiUtils.apiPostRequest(UrlUtils.getChainCodeServiceUrl(GET_VITAL), body);
+    }
+
+    static saveVitals(vitals: any, username: string) {
+        let body = {
+            func: "addVitals",
+            args: vitals,
+            user: username
+        }
+        return ApiUtils.apiPostRequest(UrlUtils.getChainCodeServiceUrl(SAVE_VITAL), body);
     }
 }

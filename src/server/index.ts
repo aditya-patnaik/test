@@ -131,6 +131,23 @@ app.post("/deepPurple/api/shareLab", authenticationMiddleware(), (req, res) => {
     })
 })
 
+app.get("/getVitals", authenticationMiddleware(), (req, res) => {
+    let username = req.query.username;
+    ChainCodeService.getVitals(username, req.user).then((vitalsResponse: any) => {
+        res.status(200).json(vitalsResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
+app.post("/saveVitals", authenticationMiddleware(), (req, res) => {
+    ChainCodeService.saveVitals(req.body, req.user).then((saveVitalResponse: any) => {
+        res.status(200).json(saveVitalResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
 app.post("/login", passport.authenticate("local"), (req, res) => {
     res.status(200).json(req.user);
 })

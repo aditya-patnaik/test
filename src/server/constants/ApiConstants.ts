@@ -7,3 +7,5 @@ export const SHARE_EMR_WITH_LAB = "api/shareLab";
 export const GET_ACCESSIBLE_EMRS = "api/query";
 export const GET_EMR_BY_ID = "api/query";
 export const SAVE_EMR = "api/saveEmr";
+export const GET_VITAL = "api/query";
+export const SAVE_VITAL = "api/invoke";

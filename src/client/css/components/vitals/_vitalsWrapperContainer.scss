@@ -1,0 +1,12 @@
+.vitals-container-wrapper {
+    padding: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    .toggle-view-btn-container {
+        margin-right: 20px;
+        position: relative;
+        z-index: 1;
+    }
+}

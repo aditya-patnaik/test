@@ -21,12 +21,13 @@ const NAV_ITEMS: {[key: string]: INAV_ITEM} = {
     HOME: { id: 1, isExact: true, link: "", label: "Home", icon: "home", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY] },
     // MY_EMR: { id: 2, link: `emr/${PATIENT_ID_PARAM}`, label: "My EMR", icon: "stethoscope", roles: [USER_ROLES.PATIENT] },
     MY_EMR: { id: 2, link: `my-emr`, label: "My EMR", icon: "stethoscope", roles: [USER_ROLES.PATIENT] },
-    ADD_EMR: { id: 3, link: `emr`, label: "Add / View EMR", icon: "stethoscope", roles: [USER_ROLES.DOCTOR, USER_ROLES.LAB]  },
-    VIEW_EMR: { id: 4, link: `emr`, label: "View EMR", icon: "stethoscope", roles: [USER_ROLES.PHARMACY]  },
-    GRANT_ACCESS: { id: 5, link: `grant-access`, label: "Grant access", icon: "lock", roles: [USER_ROLES.PATIENT] },
-    MY_PATIENTS: { id: 6, link: `my-patients`, label: "My Patients", icon: "user", roles: [USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
-    PROFILE: { id: 7, link: `profile`, label: "Profile", icon: "user", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
-    SETTINGS: { id: 8, link: `settings`, label: "Settings", icon: "cog", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  }
+    MY_VITALS: { id: 3, link: `my-vitals`, label: "My Vitals", icon: "heartbeat", roles: [USER_ROLES.PATIENT] },
+    ADD_EMR: { id: 4, link: `emr`, label: "Add / View EMR", icon: "stethoscope", roles: [USER_ROLES.DOCTOR, USER_ROLES.LAB]  },
+    VIEW_EMR: { id: 5, link: `emr`, label: "View EMR", icon: "stethoscope", roles: [USER_ROLES.PHARMACY]  },
+    GRANT_ACCESS: { id: 6, link: `grant-access`, label: "Grant access", icon: "lock", roles: [USER_ROLES.PATIENT] },
+    MY_PATIENTS: { id: 7, link: `my-patients`, label: "My Patients", icon: "user", roles: [USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
+    PROFILE: { id: 8, link: `profile`, label: "Profile", icon: "user", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
+    SETTINGS: { id: 9, link: `settings`, label: "Settings", icon: "cog", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  }
 }
 
 class NavbarContainer extends React.Component<IMapStateToProps> {

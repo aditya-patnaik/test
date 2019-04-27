@@ -4,6 +4,7 @@ import PatientCard from "../components/patient/PatientCard";
 import UserSearch from "./patient/UserSearch";
 import PatientActions from "../actions/PatientActions";
 import AppUtils from "../utils/AppUtils";
+import VitalsContainer from "./vitals/VitalsContainer";
 
 export interface EmrWrapperContainerProps {
     history?: any;
