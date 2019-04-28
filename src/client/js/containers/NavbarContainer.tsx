@@ -27,7 +27,8 @@ const NAV_ITEMS: {[key: string]: INAV_ITEM} = {
     GRANT_ACCESS: { id: 6, link: `grant-access`, label: "Grant access", icon: "lock", roles: [USER_ROLES.PATIENT] },
     MY_PATIENTS: { id: 7, link: `my-patients`, label: "My Patients", icon: "user", roles: [USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
     PROFILE: { id: 8, link: `profile`, label: "Profile", icon: "user", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
-    SETTINGS: { id: 9, link: `settings`, label: "Settings", icon: "cog", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  }
+    SETTINGS: { id: 9, link: `settings`, label: "Settings", icon: "cog", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  },
+    LOCATION_VITALS: { id: 10, link: `location-based-vitals`, label: "Geo Vitals", icon: "globe-asia", roles: [USER_ROLES.PATIENT, USER_ROLES.DOCTOR, USER_ROLES.LAB, USER_ROLES.PHARMACY]  }
 }
 
 class NavbarContainer extends React.Component<IMapStateToProps> {

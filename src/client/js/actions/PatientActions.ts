@@ -5,6 +5,7 @@ export const GET_ACCESSIBLE_EMRS = "/getAccessibleEmrs"
 export const GET_EMR_BY_ID = "/getEmrById?emrId=$emrId"
 export const SAVE_EMR = "/saveEmr?emrId=$emrId"
 export const GET_VITALS = "/getVitals?username=$userId"
+export const GET_VITALS_FOR_LOCATION = "/getLocationBasedVitals?location=$locationName"
 export const SAVE_VITALS = "/saveVitals"
 
 export default class PatientActions {
@@ -46,5 +47,9 @@ export default class PatientActions {
 
     static saveVitals = (vitals: any) => {
         return ApiUtils.apiPostRequest(SAVE_VITALS, vitals);
+    }
+
+    static getVitalsForLocation = (location: string) => {
+        return ApiUtils.apiGetRequest(GET_VITALS_FOR_LOCATION.replace("$locationName", location));
     }
 }

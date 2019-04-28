@@ -140,6 +140,15 @@ app.get("/getVitals", authenticationMiddleware(), (req, res) => {
     })
 })
 
+app.get("/getLocationBasedVitals", authenticationMiddleware(), (req, res) => {
+    let location = req.query.location;
+    ChainCodeService.getVitalsForLocation(location, req.user).then((vitalsResponse: any) => {
+        res.status(200).json(vitalsResponse);
+    }).catch((err: any) => {
+        res.status(500).json(err);
+    })
+})
+
 app.post("/saveVitals", authenticationMiddleware(), (req, res) => {
     ChainCodeService.saveVitals(req.body, req.user).then((saveVitalResponse: any) => {
         res.status(200).json(saveVitalResponse);

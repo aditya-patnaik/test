@@ -14,6 +14,7 @@ import ModalContainer from "./containers/ModalContainer";
 import MyPatientsContainer from "./containers/patient/MyPatientsContainer";
 import MyEmrContainer from "./containers/MyEmrContainer";
 import MyVitalsContainer from "./containers/MyVitalsContainer";
+import LocationVitalsContainer from "./containers/LocationVitalsContainer";
 
 type MainProps = IMapStateToProps & IMapDispatchToProps;
 
@@ -42,6 +43,7 @@ class Main extends React.Component<MainProps> {
                             <Route path="/profile" component={UserProfileContainer} />
                             <Route path="/grant-access" component={GrantAccessContainer} />
                             <Route path="/my-patients" component={MyPatientsContainer} />
+                            <Route path="/location-based-vitals" component={LocationVitalsContainer} />
                             {/* <Route path="/about" component={About} />
                             <Route path="/topics" component={Topics} /> */}
                         </div>

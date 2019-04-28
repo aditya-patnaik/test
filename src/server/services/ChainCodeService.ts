@@ -61,6 +61,15 @@ export default class ChainCodeService {
         return ApiUtils.apiPostRequest(UrlUtils.getChainCodeServiceUrl(GET_VITAL), body);
     }
 
+    static getVitalsForLocation(location: string, loggedInUser: string) {
+        let body = {
+            func: "getVitalsBasedOnLocation",
+            args: { location: location },
+            user: loggedInUser
+        }
+        return ApiUtils.apiPostRequest(UrlUtils.getChainCodeServiceUrl(GET_VITAL), body);
+    }
+
     static saveVitals(vitals: any, username: string) {
         let body = {
             func: "addVitals",
