@@ -6,7 +6,6 @@ import CurrentMedication from "./emr-sections/CurrentMedication";
 import Allergies from "./emr-sections/Allergies";
 import DiagnosticTests from "./emr-sections/DiagnosticTests";
 import DrugsPrescription from "./emr-sections/DrugsPrescription";
-import {LegacyRef, Ref} from "react";
 import {connect} from "react-redux";
 import PatientActions from "../actions/PatientActions";
 import Button from "../components/formElements/Button";
@@ -79,7 +78,6 @@ class EmrContainer extends React.Component<ComponentProps, EmrContainerState> {
     render() {
         return (
             <div className="emr-container">
-                <VitalsContainer />
                 {
                     (this.props.userGroup === "DOCTOR" || this.props.userGroup === "PATIENT") &&
                     <div>
