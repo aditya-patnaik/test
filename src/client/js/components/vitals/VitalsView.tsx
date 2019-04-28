@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as _ from "lodash"
 import * as moment from "moment"
-import Chart from "react-google-charts"
+import {Chart} from "react-google-charts"
 import { VitalConfig } from "./VitalsEdit";
 
 // const data = [
@@ -30,7 +30,7 @@ class VitalsView extends React.Component<any, any> {
         let vitalNameToDisplay = VitalConfig.filter(vital => vital.internalValue === vitalName)[0].name;
         let chartData = [["Time", vitalNameToDisplay]];
         _.map(vitalsList, (vital) => {
-            chartData.push([moment(vital.timeStamp).format("Do MMM, YYYY"), vital.value])
+            chartData.push([moment(vital.timeStamp * 1000).format("Do MMM, YYYY"), vital.value])
         })
         return chartData;
     }
